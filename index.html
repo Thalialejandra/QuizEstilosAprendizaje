@@ -136,14 +136,73 @@
   <div class="container">
     <h2>Descubre tu estilo de aprendizaje 🚀</h2>
     <form id="quizForm" class="quiz-form">
-      <!-- Tus preguntas (las dejo tal cual las tenías) -->
       <div class="question-card question">
         <p>1. Si estuvieras en tu lugar favorito de vacaciones, ¿qué elegirías hacer?</p>
         <label><input type="radio" name="q1" value="visual"> Mirar paisajes, sacar fotos o dibujar.</label>
         <label><input type="radio" name="q1" value="auditivo"> Escuchar música o conversar.</label>
         <label><input type="radio" name="q1" value="kinestesico"> Explorar o hacer deportes.</label>
       </div>
-      <!-- (...) resto de preguntas igual que tu código -->
+
+      <div class="question-card question">
+        <p>2. ¿Qué formato disfrutas más al aprender algo nuevo?</p>
+        <label><input type="radio" name="q2" value="visual"> Videos, gráficos o mapas.</label>
+        <label><input type="radio" name="q2" value="auditivo"> Explicaciones habladas o audios.</label>
+        <label><input type="radio" name="q2" value="kinestesico"> Experimentos o juegos prácticos.</label>
+      </div>
+
+      <div class="question-card question">
+        <p>3. ¿Qué colores ves con mayor claridad? (Prueba rápida)</p>
+        <label><input type="radio" name="q3" value="color_normal"> Los distingo sin problema.</label>
+        <label><input type="radio" name="q3" value="color_dificultad"> Algunos me cuestan (rojo/verde).</label>
+      </div>
+
+      <div class="question-card question">
+        <p>4. ¿Qué tamaño de letra te resulta más cómodo?</p>
+        <label><input type="radio" name="q4" value="vision_ok"> Pequeña</label>
+        <label><input type="radio" name="q4" value="vision_med"> Mediana</label>
+        <label><input type="radio" name="q4" value="vision_diff"> Grande</label>
+      </div>
+
+      <div class="question-card question">
+        <p>5. Cuando escuchas una historia, ¿qué recuerdas más?</p>
+        <label><input type="radio" name="q5" value="visual"> Las imágenes que imagino.</label>
+        <label><input type="radio" name="q5" value="auditivo"> Las voces y sonidos.</label>
+        <label><input type="radio" name="q5" value="kinestesico"> Lo que sentía al hacerlo.</label>
+      </div>
+
+      <div class="question-card question">
+        <p>6. En recreo con amigos, disfrutas más…</p>
+        <label><input type="radio" name="q6" value="visual"> Dibujar o mirar cosas.</label>
+        <label><input type="radio" name="q6" value="auditivo"> Conversar o escuchar música.</label>
+        <label><input type="radio" name="q6" value="kinestesico"> Jugar y moverte.</label>
+      </div>
+
+      <div class="question-card question">
+        <p>7. ¿Qué prefieres si alguien te explica cómo llegar a un lugar?</p>
+        <label><input type="radio" name="q7" value="visual"> Que me lo muestre en un mapa.</label>
+        <label><input type="radio" name="q7" value="auditivo"> Que me lo diga paso a paso.</label>
+        <label><input type="radio" name="q7" value="kinestesico"> Ir caminando con la persona.</label>
+      </div>
+
+      <div class="question-card question">
+        <p>8. ¿Te resultan molestos ruidos fuertes o luces brillantes?</p>
+        <label><input type="radio" name="q8" value="sensory_no"> No, me adapto.</label>
+        <label><input type="radio" name="q8" value="sensory_yes"> Sí, me cuesta concentrarme.</label>
+      </div>
+
+      <div class="question-card question">
+        <p>9. ¿Prefieres que los ejemplos estén relacionados con…?</p>
+        <label><input type="radio" name="q9" value="tema_general"> Varias cosas.</label>
+        <label><input type="radio" name="q9" value="tema_autos"> Autos y vehículos.</label>
+      </div>
+
+      <div class="question-card question">
+        <p>10. Lo que más disfrutas en clase es…</p>
+        <label><input type="radio" name="q10" value="visual"> Ver imágenes o presentaciones.</label>
+        <label><input type="radio" name="q10" value="auditivo"> Escuchar explicaciones.</label>
+        <label><input type="radio" name="q10" value="kinestesico"> Hacer experimentos o actividades.</label>
+      </div>
+
       <div class="actions">
         <button type="submit">Enviar 🏁</button>
         <button type="button" id="resetBtn" class="secondary">Reiniciar</button>
@@ -158,87 +217,66 @@
     </div>
   </div>
 
-  <div id="asistente" style="text-align:center; margin-top: 40px;">
-    <div id="mensaje"></div>
-    <div id="botones"></div>
-    <div id="exercise-content"></div>
-  </div>
-
   <script>
-    const asistente = document.getElementById("asistente");
-    const mensajeEl = document.getElementById("mensaje");
-    const botonesEl = document.getElementById("botones");
-    const exerciseContent = document.getElementById("exercise-content");
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("quizForm");
+      const modal = document.getElementById("modalResultado");
+      const textoModal = document.getElementById("textoModal");
+      const cerrarModal = document.getElementById("cerrarModal");
+      const resetBtn = document.getElementById("resetBtn");
 
-    const perfil = { estilo: "visual" }; 
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
 
-    const ejercicios = [
-      {
-        tipo: "fracción",
-        pregunta: "Observa la pizza. ¿Qué fracción representa la parte que aún queda de pizza?",
-        imagen: "src/pizza.jpeg",
-        opciones: ["3/8", "5/8", "1/2", "1/4"],
-        respuesta: 0 
-      },
-      {
-        tipo: "fracción",
-        pregunta: "Aquí tienes una torta. ¿Qué fracción está representada por los trozos morados?",
-        imagen: "src/torta.jpeg",
-        opciones: ["4/8", "2/6", "1/2", "4/6"],
-        respuesta: 0 
-      }
-    ];
+        const preguntas = 10;
+        let respuestas = {};
 
-    let ejercicioActual = 0;
-
-    function mostrarEjercicio(idx) {
-      const ej = ejercicios[idx];
-      let html = `<p>${ej.pregunta}</p>`;
-      html += `<img src="${ej.imagen}" style="width:180px; display:block; margin: 0 auto 10px;">`;
-      ej.opciones.forEach((op, i) => {
-        html += `<button class="btn" onclick="verificar(${i})">${op}</button>`;
-      });
-      exerciseContent.innerHTML = html;
-    }
-
-    window.verificar = function(idx) {
-      const correcto = ejercicios[ejercicioActual].respuesta === idx;
-      if (correcto) {
-        if (ejercicioActual === ejercicios.length - 1) {
-          mostrarAsistente("celebrate", "🎉 ¡Felicitaciones! Has completado todos los ejercicios.");
-        } else {
-          mostrarAsistente("celebrate", "¡Correcto! La fracción elegida es la respuesta.", [
-            { label: "Continuar", onClick: siguienteEjercicio }
-          ]);
+        for (let i = 1; i <= preguntas; i++) {
+          const seleccion = document.querySelector(`input[name="q${i}"]:checked`);
+          if (!seleccion) {
+            textoModal.textContent = "⚠️ Responde todas las preguntas para enviar.";
+            modal.style.display = "block";
+            return;
+          }
+          respuestas[`q${i}`] = seleccion.value;
         }
-      } else {
-        mostrarAsistente("error", "Intenta nuevamente, revisa la imagen con atención.");
-      }
-    };
 
-    function siguienteEjercicio() {
-      ejercicioActual++;
-      if (ejercicioActual < ejercicios.length) {
-        mostrarEjercicio(ejercicioActual);
-        mostrarAsistente("idle", "¡Vamos al siguiente ejercicio visual!");
-      }
-    }
+        let visual = 0, auditivo = 0, kinestesico = 0;
+        for (let i = 1; i <= preguntas; i++) {
+          const valor = respuestas[`q${i}`];
+          if (valor === "visual") visual++;
+          if (valor === "auditivo") auditivo++;
+          if (valor === "kinestesico") kinestesico++;
+        }
 
-    function mostrarAsistente(mood, texto, ctas = []) {
-      mensajeEl.innerText = texto;
-      botonesEl.innerHTML = "";
+        let estilo = "Indefinido";
+        if (visual >= auditivo && visual >= kinestesico) estilo = "Visual";
+        else if (auditivo >= visual && auditivo >= kinestesico) estilo = "Auditivo";
+        else if (kinestesico >= visual && kinestesico >= auditivo) estilo = "Kinestésico";
 
-      ctas.forEach(btn => {
-        const b = document.createElement("button");
-        b.className = "btn";
-        b.textContent = btn.label;
-        b.onclick = btn.onClick;
-        botonesEl.appendChild(b);
+        textoModal.textContent = `🎉 Felicitaciones, tu estilo de aprendizaje es: ${estilo}`;
+        modal.style.display = "block";
       });
-    }
 
-    // Mostrar el primer ejercicio
+      cerrarModal.addEventListener("click", () => {
+        modal.style.display = "none";
+      });
+
+      resetBtn.addEventListener("click", () => {
+        form.reset();
+        modal.style.display = "none";
+      });
+
+      window.addEventListener("click", (e) => {
+        if (e.target == modal) modal.style.display = "none";
+      });
+    });
+  </script>
+</body>
+</html>
+
     mostrarEjercicio(ejercicioActual);
   </script>
 </body>
 </html>
+
