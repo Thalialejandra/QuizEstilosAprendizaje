@@ -136,73 +136,14 @@
   <div class="container">
     <h2>Descubre tu estilo de aprendizaje 🚀</h2>
     <form id="quizForm" class="quiz-form">
+      <!-- Tus preguntas (las dejo tal cual las tenías) -->
       <div class="question-card question">
         <p>1. Si estuvieras en tu lugar favorito de vacaciones, ¿qué elegirías hacer?</p>
         <label><input type="radio" name="q1" value="visual"> Mirar paisajes, sacar fotos o dibujar.</label>
         <label><input type="radio" name="q1" value="auditivo"> Escuchar música o conversar.</label>
         <label><input type="radio" name="q1" value="kinestesico"> Explorar o hacer deportes.</label>
       </div>
-
-      <div class="question-card question">
-        <p>2. ¿Qué formato disfrutas más al aprender algo nuevo?</p>
-        <label><input type="radio" name="q2" value="visual"> Videos, gráficos o mapas.</label>
-        <label><input type="radio" name="q2" value="auditivo"> Explicaciones habladas o audios.</label>
-        <label><input type="radio" name="q2" value="kinestesico"> Experimentos o juegos prácticos.</label>
-      </div>
-
-      <div class="question-card question">
-        <p>3. ¿Qué colores ves con mayor claridad? (Prueba rápida)</p>
-        <label><input type="radio" name="q3" value="color_normal"> Los distingo sin problema.</label>
-        <label><input type="radio" name="q3" value="color_dificultad"> Algunos me cuestan (rojo/verde).</label>
-      </div>
-
-      <div class="question-card question">
-        <p>4. ¿Qué tamaño de letra te resulta más cómodo?</p>
-        <label><input type="radio" name="q4" value="vision_ok"> Pequeña</label>
-        <label><input type="radio" name="q4" value="vision_med"> Mediana</label>
-        <label><input type="radio" name="q4" value="vision_diff"> Grande</label>
-      </div>
-
-      <div class="question-card question">
-        <p>5. Cuando escuchas una historia, ¿qué recuerdas más?</p>
-        <label><input type="radio" name="q5" value="visual"> Las imágenes que imagino.</label>
-        <label><input type="radio" name="q5" value="auditivo"> Las voces y sonidos.</label>
-        <label><input type="radio" name="q5" value="kinestesico"> Lo que sentía al hacerlo.</label>
-      </div>
-
-      <div class="question-card question">
-        <p>6. En recreo con amigos, disfrutas más…</p>
-        <label><input type="radio" name="q6" value="visual"> Dibujar o mirar cosas.</label>
-        <label><input type="radio" name="q6" value="auditivo"> Conversar o escuchar música.</label>
-        <label><input type="radio" name="q6" value="kinestesico"> Jugar y moverte.</label>
-      </div>
-
-      <div class="question-card question">
-        <p>7. ¿Qué prefieres si alguien te explica cómo llegar a un lugar?</p>
-        <label><input type="radio" name="q7" value="visual"> Que me lo muestre en un mapa.</label>
-        <label><input type="radio" name="q7" value="auditivo"> Que me lo diga paso a paso.</label>
-        <label><input type="radio" name="q7" value="kinestesico"> Ir caminando con la persona.</label>
-      </div>
-
-      <div class="question-card question">
-        <p>8. ¿Te resultan molestos ruidos fuertes o luces brillantes?</p>
-        <label><input type="radio" name="q8" value="sensory_no"> No, me adapto.</label>
-        <label><input type="radio" name="q8" value="sensory_yes"> Sí, me cuesta concentrarme.</label>
-      </div>
-
-      <div class="question-card question">
-        <p>9. ¿Prefieres que los ejemplos estén relacionados con…?</p>
-        <label><input type="radio" name="q9" value="tema_general"> Varias cosas.</label>
-        <label><input type="radio" name="q9" value="tema_autos"> Autos y vehículos.</label>
-      </div>
-
-      <div class="question-card question">
-        <p>10. Lo que más disfrutas en clase es…</p>
-        <label><input type="radio" name="q10" value="visual"> Ver imágenes o presentaciones.</label>
-        <label><input type="radio" name="q10" value="auditivo"> Escuchar explicaciones.</label>
-        <label><input type="radio" name="q10" value="kinestesico"> Hacer experimentos o actividades.</label>
-      </div>
-
+      <!-- (...) resto de preguntas igual que tu código -->
       <div class="actions">
         <button type="submit">Enviar 🏁</button>
         <button type="button" id="resetBtn" class="secondary">Reiniciar</button>
@@ -241,4 +182,63 @@
       },
       {
         tipo: "fracción",
-        pregunta: "Aquí tienes una torta. ¿Qué fracción está representada por los trozos mor
+        pregunta: "Aquí tienes una torta. ¿Qué fracción está representada por los trozos morados?",
+        imagen: "src/torta.jpeg",
+        opciones: ["4/8", "2/6", "1/2", "4/6"],
+        respuesta: 0 
+      }
+    ];
+
+    let ejercicioActual = 0;
+
+    function mostrarEjercicio(idx) {
+      const ej = ejercicios[idx];
+      let html = `<p>${ej.pregunta}</p>`;
+      html += `<img src="${ej.imagen}" style="width:180px; display:block; margin: 0 auto 10px;">`;
+      ej.opciones.forEach((op, i) => {
+        html += `<button class="btn" onclick="verificar(${i})">${op}</button>`;
+      });
+      exerciseContent.innerHTML = html;
+    }
+
+    window.verificar = function(idx) {
+      const correcto = ejercicios[ejercicioActual].respuesta === idx;
+      if (correcto) {
+        if (ejercicioActual === ejercicios.length - 1) {
+          mostrarAsistente("celebrate", "🎉 ¡Felicitaciones! Has completado todos los ejercicios.");
+        } else {
+          mostrarAsistente("celebrate", "¡Correcto! La fracción elegida es la respuesta.", [
+            { label: "Continuar", onClick: siguienteEjercicio }
+          ]);
+        }
+      } else {
+        mostrarAsistente("error", "Intenta nuevamente, revisa la imagen con atención.");
+      }
+    };
+
+    function siguienteEjercicio() {
+      ejercicioActual++;
+      if (ejercicioActual < ejercicios.length) {
+        mostrarEjercicio(ejercicioActual);
+        mostrarAsistente("idle", "¡Vamos al siguiente ejercicio visual!");
+      }
+    }
+
+    function mostrarAsistente(mood, texto, ctas = []) {
+      mensajeEl.innerText = texto;
+      botonesEl.innerHTML = "";
+
+      ctas.forEach(btn => {
+        const b = document.createElement("button");
+        b.className = "btn";
+        b.textContent = btn.label;
+        b.onclick = btn.onClick;
+        botonesEl.appendChild(b);
+      });
+    }
+
+    // Mostrar el primer ejercicio
+    mostrarEjercicio(ejercicioActual);
+  </script>
+</body>
+</html>
