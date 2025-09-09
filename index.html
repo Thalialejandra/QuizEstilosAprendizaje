@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Quiz de Estilo de Aprendizaje - Umaximo - Grupo 5</title>
   <style>
     :root {
@@ -13,19 +13,16 @@
       --accent: #FFB347;
       --muted: #555555;
     }
-
     body {
       font-family: 'Comic Sans MS', Arial, sans-serif;
       background: var(--bg);
       margin: 0;
       padding: 20px;
     }
-
     .container {
       max-width: 900px;
       margin: 0 auto;
     }
-
     h2 {
       text-align: center;
       color: var(--umaximo);
@@ -33,7 +30,6 @@
       margin-bottom: 30px;
       text-shadow: 1px 1px 2px #aaa;
     }
-
     .question-card {
       background: var(--card);
       border-radius: 25px;
@@ -42,18 +38,15 @@
       box-shadow: 0 5px 12px rgba(0,0,0,0.1);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-
     .question-card:hover {
       transform: translateY(-3px);
       box-shadow: 0 10px 18px rgba(0,0,0,0.2);
     }
-
     .question-card p {
       font-weight: 700;
       font-size: 1.2rem;
       margin-bottom: 12px;
     }
-
     .question-card label {
       display: block;
       margin-bottom: 8px;
@@ -64,27 +57,23 @@
       background-color: #f9f9f9;
       transition: all 0.2s ease;
     }
-
     .question-card label:hover {
       background-color: var(--umaximo-dark);
       color: #fff;
       transform: scale(1.03);
     }
-
     .question-card input {
       accent-color: var(--accent);
       transform: scale(1.3);
       cursor: pointer;
       margin-right: 10px;
     }
-
     .actions {
       display: flex;
       justify-content: center;
       gap: 15px;
       margin-top: 20px;
     }
-
     button {
       background: var(--umaximo);
       color: white;
@@ -96,17 +85,14 @@
       transition: 0.2s;
       font-size: 1rem;
     }
-
     button:hover {
       background: var(--umaximo-dark);
     }
-
     button.secondary {
       background: white;
       color: var(--umaximo);
       border: 2px solid var(--umaximo);
     }
-
     .modal {
       display: none;
       position: fixed;
@@ -114,7 +100,6 @@
       left: 0; top: 0; width: 100%; height: 100%;
       background: rgba(0,0,0,0.3);
     }
-
     .modal-content {
       background: #fff;
       margin: 10% auto;
@@ -124,7 +109,6 @@
       text-align: center;
       box-shadow: 0 5px 12px rgba(0,0,0,0.18);
     }
-
     @media(max-width:640px){
       body { padding: 10px; }
       .question-card { padding: 15px 18px; }
@@ -138,69 +122,60 @@
     <form id="quizForm" class="quiz-form">
       <div class="question-card question">
         <p>1. Si estuvieras en tu lugar favorito de vacaciones, ¿qué elegirías hacer?</p>
-        <label><input type="radio" name="q1" value="visual"> Mirar paisajes, sacar fotos o dibujar.</label>
-        <label><input type="radio" name="q1" value="auditivo"> Escuchar música o conversar.</label>
-        <label><input type="radio" name="q1" value="kinestesico"> Explorar o hacer deportes.</label>
+        <label><input type="radio" name="q1" value="visual" /> Mirar paisajes, sacar fotos o dibujar.</label>
+        <label><input type="radio" name="q1" value="auditivo" /> Escuchar música o conversar.</label>
+        <label><input type="radio" name="q1" value="kinestesico" /> Explorar o hacer deportes.</label>
       </div>
-
       <div class="question-card question">
         <p>2. ¿Qué formato disfrutas más al aprender algo nuevo?</p>
-        <label><input type="radio" name="q2" value="visual"> Videos, gráficos o mapas.</label>
-        <label><input type="radio" name="q2" value="auditivo"> Explicaciones habladas o audios.</label>
-        <label><input type="radio" name="q2" value="kinestesico"> Experimentos o juegos prácticos.</label>
+        <label><input type="radio" name="q2" value="visual" /> Videos, gráficos o mapas.</label>
+        <label><input type="radio" name="q2" value="auditivo" /> Explicaciones habladas o audios.</label>
+        <label><input type="radio" name="q2" value="kinestesico" /> Experimentos o juegos prácticos.</label>
       </div>
-
       <div class="question-card question">
         <p>3. ¿Qué colores ves con mayor claridad? (Prueba rápida)</p>
-        <label><input type="radio" name="q3" value="color_normal"> Los distingo sin problema.</label>
-        <label><input type="radio" name="q3" value="color_dificultad"> Algunos me cuestan (rojo/verde).</label>
+        <label><input type="radio" name="q3" value="color_normal" /> Los distingo sin problema.</label>
+        <label><input type="radio" name="q3" value="color_dificultad" /> Algunos me cuestan (rojo/verde).</label>
       </div>
-
       <div class="question-card question">
         <p>4. ¿Qué tamaño de letra te resulta más cómodo?</p>
-        <label><input type="radio" name="q4" value="vision_ok"> Pequeña</label>
-        <label><input type="radio" name="q4" value="vision_med"> Mediana</label>
-        <label><input type="radio" name="q4" value="vision_diff"> Grande</label>
+        <label><input type="radio" name="q4" value="vision_ok" /> Pequeña</label>
+        <label><input type="radio" name="q4" value="vision_med" /> Mediana</label>
+        <label><input type="radio" name="q4" value="vision_diff" /> Grande</label>
       </div>
-
       <div class="question-card question">
         <p>5. Cuando escuchas una historia, ¿qué recuerdas más?</p>
-        <label><input type="radio" name="q5" value="visual"> Las imágenes que imagino.</label>
-        <label><input type="radio" name="q5" value="auditivo"> Las voces y sonidos.</label>
-        <label><input type="radio" name="q5" value="kinestesico"> Lo que sentía al hacerlo.</label>
+        <label><input type="radio" name="q5" value="visual" /> Las imágenes que imagino.</label>
+        <label><input type="radio" name="q5" value="auditivo" /> Las voces y sonidos.</label>
+        <label><input type="radio" name="q5" value="kinestesico" /> Lo que sentía al hacerlo.</label>
       </div>
-
       <div class="question-card question">
         <p>6. En recreo con amigos, disfrutas más…</p>
-        <label><input type="radio" name="q6" value="visual"> Dibujar o mirar cosas.</label>
-        <label><input type="radio" name="q6" value="auditivo"> Conversar o escuchar música.</label>
-        <label><input type="radio" name="q6" value="kinestesico"> Jugar y moverte.</label>
+        <label><input type="radio" name="q6" value="visual" /> Dibujar o mirar cosas.</label>
+        <label><input type="radio" name="q6" value="auditivo" /> Conversar o escuchar música.</label>
+        <label><input type="radio" name="q6" value="kinestesico" /> Jugar y moverte.</label>
       </div>
-
       <div class="question-card question">
         <p>7. ¿Qué prefieres si alguien te explica cómo llegar a un lugar?</p>
-        <label><input type="radio" name="q7" value="visual"> Que me lo muestre en un mapa.</label>
-        <label><input type="radio" name="q7" value="auditivo"> Que me lo diga paso a paso.</label>
-        <label><input type="radio" name="q7" value="kinestesico"> Ir caminando con la persona.</label>
+        <label><input type="radio" name="q7" value="visual" /> Que me lo muestre en un mapa.</label>
+        <label><input type="radio" name="q7" value="auditivo" /> Que me lo diga paso a paso.</label>
+        <label><input type="radio" name="q7" value="kinestesico" /> Ir caminando con la persona.</label>
       </div>
-
       <div class="question-card question">
         <p>8. ¿Te resultan molestos ruidos fuertes o luces brillantes?</p>
-        <label><input type="radio" name="q8" value="sensory_no"> No, me adapto.</label>
-        <label><input type="radio" name="q8" value="sensory_yes"> Sí, me cuesta concentrarme.</label>
+        <label><input type="radio" name="q8" value="sensory_no" /> No, me adapto.</label>
+        <label><input type="radio" name="q8" value="sensory_yes" /> Sí, me cuesta concentrarme.</label>
       </div>
-
       <div class="question-card question">
         <p>9. ¿Prefieres que los ejemplos estén relacionados con…?</p>
-        <label><input type="radio" name="q9" value="tema_general"> Varias cosas.</label>
-        <label><input type="radio" name="q9" value="tema_autos"> Autos y vehículos.</label>
+        <label><input type="radio" name="q9" value="tema_general" /> Varias cosas.</label>
+        <label><input type="radio" name="q9" value="tema_autos" /> Autos y vehículos.</label>
       </div>
-
       <div class="question-card question">
         <p>10. Lo que más disfrutas en clase es…</p>
-        <label><input type="radio" name="q10" value="visual"> Ver imágenes o presentaciones.</label>
-        <label><input type="radio" name="q10" value="auditivo"> Escuchar explicaciones.</label>
-        <label><input type="radio" name="q10" value="kinestesico"> Hacer experimentos o actividades.</label>
+        <label><input type="radio" name="q10" value="visual" /> Ver imágenes o presentaciones.</label>
+        <label><input type="radio" name="q10" value="auditivo" /> Escuchar explicaciones.</label>
+        <label><input type="radio" name="q10" value="kinestesico" /> Hacer experimentos o actividades.</label>
       </div>
 
       <div class="actions">
@@ -227,10 +202,8 @@
 
       form.addEventListener("submit", (e) => {
         e.preventDefault();
-
         const preguntas = 10;
         let respuestas = {};
-
         for (let i = 1; i <= preguntas; i++) {
           const seleccion = document.querySelector(`input[name="q${i}"]:checked`);
           if (!seleccion) {
@@ -240,20 +213,17 @@
           }
           respuestas[`q${i}`] = seleccion.value;
         }
-
         let visual = 0, auditivo = 0, kinestesico = 0;
         for (let i = 1; i <= preguntas; i++) {
           const valor = respuestas[`q${i}`];
           if (valor === "visual") visual++;
-          if (valor === "auditivo") auditivo++;
-          if (valor === "kinestesico") kinestesico++;
+          else if (valor === "auditivo") auditivo++;
+          else if (valor === "kinestesico") kinestesico++;
         }
-
         let estilo = "Indefinido";
         if (visual >= auditivo && visual >= kinestesico) estilo = "Visual";
         else if (auditivo >= visual && auditivo >= kinestesico) estilo = "Auditivo";
         else if (kinestesico >= visual && kinestesico >= auditivo) estilo = "Kinestésico";
-
         textoModal.textContent = `🎉 Felicitaciones, tu estilo de aprendizaje es: ${estilo}`;
         modal.style.display = "block";
       });
@@ -268,15 +238,11 @@
       });
 
       window.addEventListener("click", (e) => {
-        if (e.target == modal) modal.style.display = "none";
+        if (e.target === modal) modal.style.display = "none";
       });
     });
   </script>
 </body>
 </html>
 
-    mostrarEjercicio(ejercicioActual);
-  </script>
-</body>
-</html>
 
